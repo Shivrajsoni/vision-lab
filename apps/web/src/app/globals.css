@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/*
+  Palette comes from viridis, the false-colour map used for feature maps and heat-maps:
+  violet (low) → teal (mid) → yellow (high). Violet tints the surfaces, teal is the
+  interface accent, and yellow is kept for data and focus.
+*/
+:root {
+  color-scheme: light;
+  --bg: #f5f3fa;
+  --surface: #ffffff;
+  --sunken: #ebe7f4;
+  --line: #d6cfe8;
+  --text: #1b1530;
+  --muted: #5b5378;
+  --accent: #0e7468;
+  --on-accent: #ffffff;
+  --signal: #5b2a91;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #17122b;
+    --surface: #1f1838;
+    --sunken: #110d21;
+    --line: #382e5c;
+    --text: #edeaf6;
+    --muted: #a8a0c4;
+    --accent: #3cc7a6;
+    --on-accent: #0c1f1a;
+    --signal: #fde725;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #17122b;
+  --surface: #1f1838;
+  --sunken: #110d21;
+  --line: #382e5c;
+  --text: #edeaf6;
+  --muted: #a8a0c4;
+  --accent: #3cc7a6;
+  --on-accent: #0c1f1a;
+  --signal: #fde725;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-signal: var(--signal);
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+html {
+  font-size: 106.25%; /* 17px body */
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.55;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-stretch: 88%;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* Pixels are the subject: canvases show them as hard squares, never smoothed. */
+.pixelated {
+  image-rendering: pixelated;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
